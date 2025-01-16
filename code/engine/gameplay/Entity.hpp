@@ -28,10 +28,12 @@ namespace engine
 
 			const sf::Transform &getTransform() const;
 
-		protected:
+			//EntityContext& getContext() const;
+
+		//protected:
 			EntityContext & _context;
 
-		private:
+		//private:
 			sf::Vector2f _position{};
 			float _rotation{ 0.f };
 			sf::Transform _transform;

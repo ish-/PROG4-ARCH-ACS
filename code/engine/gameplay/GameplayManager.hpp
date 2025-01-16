@@ -57,3 +57,5 @@ namespace engine
 		};
 	}
 }
+
+using GameplayManager = engine::gameplay::Manager;

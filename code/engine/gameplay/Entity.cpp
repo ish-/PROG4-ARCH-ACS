@@ -37,6 +37,11 @@ namespace engine
 			return _transform;
 		}
 
+		/*EntityContext& Entity::getContext() const
+		{
+			return _context;
+		}*/
+
 		void Entity::updateTransform()
 		{
 			_transform = sf::Transform::Identity;
