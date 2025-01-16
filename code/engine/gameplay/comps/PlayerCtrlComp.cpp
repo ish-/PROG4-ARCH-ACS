@@ -6,10 +6,15 @@ PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP)
 
 }
 
+PlayerCtrlComp::~PlayerCtrlComp() {
 
-//void PlayerCtrlComp::update(float dt)
-//{
-//	//_justMoved = false;
-//	auto position = owner.getPosition();
-//	//float rotation = getRotation();
-//}
+}
+
+
+void PlayerCtrlComp::update(float dt)
+{
+	dt;
+	//_justMoved = false;
+	auto position = owner.getPosition();
+	//float rotation = getRotation();
+}
