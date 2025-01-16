@@ -5,8 +5,8 @@
 #include <engine/input/InputManager.hpp>
 #include <engine/gameplay/GameplayManager.hpp>
 
-PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP)
-	: Component(ownerP) {
+PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP, int updateOrderP)
+	: Component(ownerP, updateOrderP) {
 
 }
 
@@ -54,6 +54,6 @@ void PlayerCtrlComp::update(float dt)
 		owner.setPosition(position);
 		owner.setRotation(rotation);
 
-		owner.dGeomSetPosition(owner._collisionGeomId, position.x, position.y, 0);
+		//owner.dGeomSetPosition(owner._collisionGeomId, position.x, position.y, 0);
 	}
 }

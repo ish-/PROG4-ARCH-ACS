@@ -22,7 +22,7 @@ public:
 	virtual void update(float dt);
 	//virtual void onUpdateWorldTransform() {}
 
-protected:
+//protected:
 	engine::gameplay::Entity& owner;
 	int updateOrder;		// Order of the component in the actor's updateComponent method
 };

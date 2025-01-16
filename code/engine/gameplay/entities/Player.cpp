@@ -28,7 +28,7 @@ namespace engine
 
 			void Player::update()
 			{
-				_justMoved = false;
+				/*_justMoved = false;
 				auto position = getPosition();
 				float rotation = getRotation();
 
@@ -77,7 +77,7 @@ namespace engine
 					{
 						_context.entityListener.loadNextMap();
 					}
-				}
+				}*/
 			}
 
 			bool Player::hasJustMoved() const
