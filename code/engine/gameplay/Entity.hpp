@@ -1,6 +1,9 @@
 #pragma once
 
+#include <vector>
 #include <SFML/Graphics/Transform.hpp>
+
+class Component;
 
 namespace engine
 {
@@ -34,6 +37,16 @@ namespace engine
 			sf::Transform _transform;
 
 			void updateTransform();
+
+		// Component
+		public:
+			void updateComponents(float dt);
+			void addComponent(Component* component);
+			void removeComponent(Component* component);
+
+			std::vector<Component*> components;
 		};
 	}
 }
+
+using engine::gameplay::Entity;

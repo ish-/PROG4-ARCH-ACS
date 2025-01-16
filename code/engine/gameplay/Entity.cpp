@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "Component.hpp"
 
 namespace engine
 {
@@ -42,5 +43,44 @@ namespace engine
 			_transform.translate(_position);
 			_transform.rotate(_rotation);
 		}
+
+		// Component
+
+
+		void Entity::updateComponents(float dt)
+		{
+			for (auto component : components)
+			{
+				component->update(dt);
+			}
+		}
+
+		void Entity::addComponent(Component* component)
+		{
+			// Find the insertion point in the sorted vector
+			// (The first element with a order higher than me)
+			int myOrder = component->getUpdateOrder();
+			auto iter = begin(components);
+			for (; iter != end(components); ++iter)
+			{
+				if (myOrder < (*iter)->getUpdateOrder())
+				{
+					break;
+				}
+			}
+
+			// Inserts element before position of iterator
+			components.insert(iter, component);
+		}
+
+		void Entity::removeComponent(Component* component)
+		{
+			auto iter = std::find(begin(components), end(components), component);
+			if (iter != end(components))
+			{
+				components.erase(iter);
+			}
+		}
+
 	}
 }
