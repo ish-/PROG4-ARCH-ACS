@@ -26,8 +26,8 @@ namespace engine
 				dGeomSetData(_collisionGeomId, this);
 			}
 
-			void Player::update()
-			{
+			/*void Player::update()
+			{*/
 				/*_justMoved = false;
 				auto position = getPosition();
 				float rotation = getRotation();
@@ -78,7 +78,7 @@ namespace engine
 						_context.entityListener.loadNextMap();
 					}
 				}*/
-			}
+			//}
 
 			bool Player::hasJustMoved() const
 			{

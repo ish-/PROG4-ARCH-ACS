@@ -13,7 +13,7 @@ namespace engine
 			public:
 				Player(EntityContext &context);
 
-				virtual void update() override;
+				//virtual void update() override;
 
 				bool hasJustMoved() const;
 

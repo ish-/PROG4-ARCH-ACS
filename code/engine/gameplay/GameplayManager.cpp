@@ -11,6 +11,8 @@
 #include <engine/gameplay/entities/Player.hpp>
 #include <engine/gameplay/entities/Target.hpp>
 
+#include <engine/gameplay/comps/PlayerCtrlComp.h>
+
 namespace engine
 {
 	namespace gameplay
@@ -101,11 +103,12 @@ namespace engine
 						int column = std::stoi(xmlElement.child_value("column"));
 						assert(column >= 0 && column < _columns);
 
-						auto entity = new entities::Player{ _context };
-						entity->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
+						auto player = new entities::Player{ _context };
+						new PlayerCtrlComp(player, 0);
+						player->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
-						_entities.insert(entity);
-						_playerEntity = entity;
+						_entities.insert(player);
+						_playerEntity = player;
 					}
 
 					if (!std::strcmp(xmlElement.name(), "target"))

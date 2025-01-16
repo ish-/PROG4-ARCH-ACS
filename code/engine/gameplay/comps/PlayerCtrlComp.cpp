@@ -1,4 +1,5 @@
-#include "PlayerCtrlComp.h"
+#include <engine/gameplay/comps/PlayerCtrlComp.h>
+
 #include <engine/gameplay/Entity.hpp>
 
 #include <engine/gameplay/EntityContext.hpp>

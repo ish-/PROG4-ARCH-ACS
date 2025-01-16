@@ -17,7 +17,7 @@ namespace engine
 			Entity(EntityContext &context);
 			virtual ~Entity() = default;
 
-			virtual void update() = 0;
+			virtual void update();
 			virtual void draw() = 0;
 
 			const sf::Vector2f &getPosition() const;

@@ -10,6 +10,11 @@ namespace engine
 		{
 		}
 
+		void Entity::update()
+		{
+			updateComponents(0.0f);
+		}
+
 		const sf::Vector2f &Entity::getPosition() const
 		{
 			return _position;

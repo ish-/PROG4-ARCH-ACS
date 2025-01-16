@@ -4,6 +4,7 @@
 
 class PlayerCtrlComp : public Component
 {
+public:
 	PlayerCtrlComp(class engine::gameplay::Entity* ownerP, int updateOrderP = 100);
 	PlayerCtrlComp() = delete;
 	virtual ~PlayerCtrlComp();
