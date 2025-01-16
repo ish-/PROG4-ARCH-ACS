@@ -52,6 +52,8 @@ namespace engine
 
 			bool _preventMapCompletion{ false };
 			bool _nextMapRequested{ false };
+
+			bool bGameover = false;
 		};
 	}
 }

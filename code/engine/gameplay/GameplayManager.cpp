@@ -35,6 +35,9 @@ namespace engine
 				_nextMapRequested = false;
 				loadMap(_nextMapName);
 			}
+
+			if (bGameover)
+				loadMap(_currentMapName);
 		}
 
 		void Manager::draw()
@@ -45,8 +48,10 @@ namespace engine
 			}
 		}
 
-		void Manager::loadMap(const std::string &mapName)
+		void Manager::loadMap(const std::string& mapName)
 		{
+			bGameover = false;
+
 			for (auto entity : _entities)
 			{
 				delete entity;
@@ -135,8 +140,9 @@ namespace engine
 
 		void Manager::gameOver()
 		{
+			bGameover = true;
 			std::cout << "Game over" << std::endl;
-			loadMap(_currentMapName);
+			/*loadMap(_currentMapName);*/
 		}
 
 		void Manager::loadNextMap()
