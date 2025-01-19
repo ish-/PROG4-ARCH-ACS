@@ -73,7 +73,7 @@ namespace engine
 					auto xmlArchetype = doc.first_child();
 
 					std::string shapeListName = xmlArchetype.child_value("shapelist");
-					assert(_shapeList.load(shapeListName));
+					assert(shapeComp->load(shapeListName));
 
 					_visionRadius = std::stof(xmlArchetype.child_value("vision_radius"));
 					assert(_visionRadius > 0.f);

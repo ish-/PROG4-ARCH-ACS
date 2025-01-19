@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include <SFML/Graphics/Transform.hpp>
 
 class Component;
@@ -54,6 +55,7 @@ namespace engine
 			void addComponent(Component* component);
 			void removeComponent(Component* component);
 
+			//std::vector<std::shared_ptr<Component>> components;
 			std::vector<Component*> components;
 		};
 	}

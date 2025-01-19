@@ -42,7 +42,17 @@ namespace engine
 				CollidedComps comps = collisionComp->getCollidedComps();
 				for (auto comp : comps)
 				{
-					if (auto targetEntity = dynamic_cast<entities::Target*>(&comp->owner)) {
+					if (comp == nullptr)
+						continue;
+
+					Entity* owner = &(comp->owner);
+					if (!owner)
+						continue;
+
+					if (auto targetEntity = dynamic_cast<entities::Target*>(owner)) {
+						if (!targetEntity)
+							continue;
+
 						LOG("Collision with Target");
 						_context.entityListener.loadNextMap();
 					}
