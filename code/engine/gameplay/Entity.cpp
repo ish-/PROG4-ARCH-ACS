@@ -32,6 +32,7 @@ namespace engine
 		{
 			_position = newPosition;
 			updateTransform();
+			bIsMoved = true;
 		}
 
 		float Entity::getRotation() const
@@ -41,6 +42,7 @@ namespace engine
 
 		void Entity::setRotation(float newRotation)
 		{
+			bIsMoved = true;
 			_rotation = newRotation;
 			updateTransform();
 		}

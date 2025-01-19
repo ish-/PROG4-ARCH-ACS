@@ -52,11 +52,8 @@ void PlayerCtrlComp::update(float dt)
 		rotation = 90.f;
 	}
 
-	if (justMoved)
-	{
+	if (justMoved) {
 		owner.setPosition(position);
 		owner.setRotation(rotation);
-
-		//owner.dGeomSetPosition(owner._collisionGeomId, position.x, position.y, 0);
 	}
 }

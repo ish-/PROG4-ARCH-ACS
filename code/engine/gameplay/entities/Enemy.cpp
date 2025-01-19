@@ -24,7 +24,7 @@ namespace engine
 			void Enemy::update()
 			{
 				auto &player = _context.entityListener.getPlayer();
-				if (player.hasJustMoved())
+				if (player.bIsMoved)
 				{
 					auto &playerPosition = player.getPosition();
 					auto &myPosition = getPosition();

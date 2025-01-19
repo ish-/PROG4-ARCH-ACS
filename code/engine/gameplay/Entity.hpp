@@ -37,6 +37,7 @@ namespace engine
 			sf::Vector2f _position{};
 			float _rotation{ 0.f };
 			sf::Transform _transform;
+			bool bIsMoved{ false };
 
 			void updateTransform();
 

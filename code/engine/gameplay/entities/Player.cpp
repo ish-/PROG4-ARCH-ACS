@@ -12,6 +12,7 @@
 #include <engine/Engine.hpp>
 
 #include <engine/gameplay/comps/PlayerCtrlComp.h>
+#include <engine/gameplay/comps/CollisionComp.hpp>
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
@@ -21,45 +22,32 @@ namespace engine
 	{
 		namespace entities
 		{
-			Player::Player(EntityContext &context)
+			Player::Player(EntityContext& context)
 				: Character{ context }
 			{
 				ctrlComp = new PlayerCtrlComp(this);
-				_shapeList.load("player");
+				collisionComp = new CollisionComp(this,
+					engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
 
-				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-				dGeomSetData(_collisionGeomId, this);
+				_shapeList.load("player");
 			}
 
 			void Player::update()
 			{
 				Super::update();
 
-				if (ctrlComp->justMoved)
+				CollidedEntities entities = collisionComp->getCollidedEntities();
+				for (auto entity : entities)
 				{
-					dGeomSetPosition(_collisionGeomId, _position.x, _position.y, 0);
-				}
-
-				auto collisions = _context.physicsManager.getCollisionsWith(_collisionGeomId);
-				for (auto &geomId : collisions)
-				{
-					auto entity = reinterpret_cast<Entity *>(dGeomGetData(geomId));
-					auto targetEntity = dynamic_cast<entities::Target *>(entity);
-					if (targetEntity)
-					{
+					if (auto targetEntity
+							= dynamic_cast<entities::Target*>(entity))
 						_context.entityListener.loadNextMap();
-					}
 				}
 			}
 
 			Player::~Player()
 			{
 				LOG("~Player()");
-			}
-
-			bool Player::hasJustMoved() const
-			{
-				return ctrlComp->justMoved;
 			}
 		}
 	}

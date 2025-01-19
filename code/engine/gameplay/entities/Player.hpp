@@ -3,6 +3,7 @@
 #include <engine/gameplay/entities/Character.hpp>
 
 class PlayerCtrlComp;
+class CollisionComp;
 
 namespace engine
 {
@@ -24,6 +25,7 @@ namespace engine
 				bool hasJustMoved() const;
 
 				PlayerCtrlComp* ctrlComp;
+				CollisionComp* collisionComp;
 			};
 		}
 	}

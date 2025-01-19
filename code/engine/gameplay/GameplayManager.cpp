@@ -10,6 +10,7 @@
 #include <engine/gameplay/entities/Enemy.hpp>
 #include <engine/gameplay/entities/Player.hpp>
 #include <engine/gameplay/entities/Target.hpp>
+#include <engine/LOG.hpp>
 
 namespace engine
 {
@@ -55,6 +56,7 @@ namespace engine
 		}
 
 		void Manager::clearMap() {
+			LOG("Manager::clearMap()");
 			for (auto entity : _entities)
 			{
 				delete entity;
@@ -64,6 +66,7 @@ namespace engine
 
 		void Manager::loadMap(const std::string& mapName)
 		{
+			LOG("Manager::loadMap()");
 			bGameover = false;
 
 			clearMap();
@@ -150,6 +153,7 @@ namespace engine
 
 		void Manager::gameOver()
 		{
+			LOG("Manager::gameOver()");
 			bGameover = true;
 			std::cout << "Game over" << std::endl;
 			/*loadMap(_currentMapName);*/
@@ -157,6 +161,7 @@ namespace engine
 
 		void Manager::loadNextMap()
 		{
+			LOG("Manager::loadNextMap()");
 			if (!_preventMapCompletion)
 			{
 				_nextMapRequested = true;
