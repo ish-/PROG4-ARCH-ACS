@@ -2,16 +2,14 @@
 #include "Entity.hpp"
 #include <engine/LOG.hpp>
 
-Component::Component(engine::gameplay::Entity* ownerP, int updateOrderP) :
-	owner(*ownerP),
-	updateOrder(updateOrderP)
+Component::Component()
 {
-	owner.addComponent(this);
+	//owner.addComponent(this);
 }
 
 Component::~Component()
 {
-	owner.removeComponent(this);
+	//getOwner()->removeComponent(this);
 	//LOG("~Component()");
 }
 

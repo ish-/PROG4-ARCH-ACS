@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 #include <engine/gameplay/entities/Character.hpp>
 
 class ShapeComp;
@@ -19,7 +20,7 @@ namespace engine
 				virtual void update() override;
 				virtual void draw();
 
-				ShapeComp* shapeComp;
+				std::shared_ptr<ShapeComp> shapeComp;
 
 			private:
 				float _visionRadius{ 0 };

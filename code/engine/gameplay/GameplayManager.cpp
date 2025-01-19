@@ -8,8 +8,8 @@
 #include <pugixml/pugixml.hpp>
 #include <engine/Engine.hpp>
 #include <engine/gameplay/entities/Enemy.hpp>
-#include <engine/gameplay/entities/Player.hpp>
-#include <engine/gameplay/entities/Target.hpp>
+//#include <engine/gameplay/entities/Player.hpp>
+//#include <engine/gameplay/entities/Target.hpp>
 #include <engine/LOG.hpp>
 
 namespace engine
@@ -60,12 +60,12 @@ namespace engine
 		bool Manager::stop(char* msg = "Untitled stop...")
 		{
 			std::cout << msg << std::endl;
-			clearMap();
+			clearMapEntities();
 			return true;
 		}
 
-		void Manager::clearMap() {
-			LOG("Manager::clearMap()");
+		void Manager::clearMapEntities() {
+			LOG("Manager::clearMapEntities()");
 			for (auto entity : _entities)
 			{
 				delete entity;
@@ -78,7 +78,7 @@ namespace engine
 			LOG("Manager::loadMap()");
 			bGameover = false;
 
-			clearMap();
+			clearMapEntities();
 
 			std::stringstream filename;
 			filename << "maps/" << mapName << ".xml";
@@ -118,7 +118,7 @@ namespace engine
 
 					if (!std::strcmp(xmlElement.name(), "player"))
 					{
-						int row = std::stoi(xmlElement.child_value("row"));
+						/*int row = std::stoi(xmlElement.child_value("row"));
 						assert(row >= 0 && row < _rows);
 
 						int column = std::stoi(xmlElement.child_value("column"));
@@ -129,12 +129,12 @@ namespace engine
 						player->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
 						_entities.insert(player);
-						_playerEntity = player;
+						_playerEntity = player;*/
 					}
 
 					if (!std::strcmp(xmlElement.name(), "target"))
 					{
-						int row = std::stoi(xmlElement.child_value("row"));
+						/*int row = std::stoi(xmlElement.child_value("row"));
 						assert(row >= 0 && row < _rows);
 
 						int column = std::stoi(xmlElement.child_value("column"));
@@ -144,7 +144,7 @@ namespace engine
 						entity->setName("Target");
 						entity->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
-						_entities.insert(entity);
+						_entities.insert(entity);*/
 					}
 				}
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <ode/collision.h>
 #include <engine/gameplay/Entity.hpp>
 
@@ -22,8 +23,8 @@ namespace engine
 
 				virtual void draw() override;
 
-				CollisionComp* collisionComp;
-				ShapeComp* shapeComp;
+				std::shared_ptr<CollisionComp> collisionComp;
+				std::shared_ptr<ShapeComp> shapeComp;
 			};
 		}
 	}

@@ -19,9 +19,8 @@ namespace engine
 			Target::Target(EntityContext &context)
 				: Entity{ context }
 			{
-				collisionComp = new CollisionComp(this, engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-				shapeComp = new ShapeComp(this);
-				shapeComp->load("target");
+				collisionComp = addComponent<CollisionComp>(engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
+				shapeComp = addComponent<ShapeComp>("target");
 			}
 
 			Target::~Target()

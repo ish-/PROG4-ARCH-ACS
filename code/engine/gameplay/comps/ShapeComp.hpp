@@ -11,8 +11,7 @@ using Shapes = std::vector<sf::Shape*>;
 class ShapeComp : public Component
 {
 public:
-    ShapeComp(class engine::gameplay::Entity* ownerP, int updateOrderP = 100);
-	ShapeComp() = delete;
+    ShapeComp(const std::string&);
 	virtual ~ShapeComp();
 	ShapeComp(const ShapeComp&) = delete;
 	ShapeComp& operator=(const ShapeComp&) = delete;

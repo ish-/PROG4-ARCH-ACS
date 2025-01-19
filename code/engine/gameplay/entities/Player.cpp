@@ -1,5 +1,7 @@
 #include "engine/gameplay/entities/Player.hpp"
 
+#include <memory>
+
 #include <ode/collision.h>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Shape.hpp>
@@ -27,12 +29,11 @@ namespace engine
 			Player::Player(EntityContext& context)
 				: Character{ context }
 			{
-				ctrlComp = new PlayerCtrlComp(this);
-				collisionComp = new CollisionComp(this,
+				//ctrlComp = addComponent<PlayerCtrlComp>();
+				addComponent<PlayerCtrlComp>();
+				collisionComp = addComponent<CollisionComp>(
 					engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-
-				shapeComp = new ShapeComp(this);
-				shapeComp->load("player");
+				shapeComp = addComponent<ShapeComp>("player");
 			}
 
 			void Player::update()
@@ -45,11 +46,11 @@ namespace engine
 					if (comp == nullptr)
 						continue;
 
-					Entity* owner = &(comp->owner);
+					std::shared_ptr<Entity> owner = comp->getOwner();
 					if (!owner)
 						continue;
 
-					if (auto targetEntity = dynamic_cast<entities::Target*>(owner)) {
+					if (auto targetEntity = dynamic_cast<entities::Target*>(owner.get())) {
 						if (!targetEntity)
 							continue;
 

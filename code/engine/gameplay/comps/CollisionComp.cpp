@@ -6,10 +6,8 @@
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
-CollisionComp::CollisionComp(Entity* ownerP, float lx, float ly, float lz, int updateOrderP)
-	: Component(ownerP, updateOrderP) {
-
-    _collisionGeomId = dCreateBox(owner._context.physicsManager.getSpaceId(), lx, ly, lz);
+CollisionComp::CollisionComp(float lx, float ly, float lz) {
+    _collisionGeomId = dCreateBox(getOwner()->_context.physicsManager.getSpaceId(), lx, ly, lz);
     dGeomSetData(_collisionGeomId, this);
 }
 
@@ -21,7 +19,7 @@ CollisionComp::~CollisionComp() {
 std::set<CollisionComp*> CollisionComp::getCollidedComps()
 {
 
-	auto collisions = owner._context.physicsManager.getCollisionsWith(_collisionGeomId);
+	auto collisions = getOwner()->_context.physicsManager.getCollisionsWith(_collisionGeomId);
 	std::set<CollisionComp*> comps;
 	for (auto& geomId : collisions)
 	{
@@ -35,8 +33,9 @@ std::set<CollisionComp*> CollisionComp::getCollidedComps()
 void CollisionComp::update(float dt)
 {
 	dt;
-	if (owner.bIsMoved)
+	auto owner = getOwner();
+	if (owner->bIsMoved)
 	{
-		dGeomSetPosition(_collisionGeomId, owner._position.x, owner._position.y, 0);
+		dGeomSetPosition(_collisionGeomId, owner->_position.x, owner->_position.y, 0);
 	}
 }

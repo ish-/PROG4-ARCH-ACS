@@ -8,6 +8,7 @@
 #include <engine/gameplay/GameplayManager.hpp>
 #include "engine/config.hpp"
 #include <engine/gameplay/entities/Player.hpp>
+
 #include <engine/gameplay/comps/ShapeComp.hpp>
 
 namespace engine
@@ -19,8 +20,8 @@ namespace engine
 			Enemy::Enemy(EntityContext &context, const std::string &archetypeName)
 				: Character{ context }
 			{
-				shapeComp = new ShapeComp(this);
-				shapeComp->load("guard");
+				// TODO: uncomment all shapeComp
+				shapeComp = addComponent<ShapeComp>("guard");
 
 				loadArchetype(archetypeName);
 			}
@@ -56,7 +57,7 @@ namespace engine
 
 			void Enemy::draw()
 			{
-				shapeComp->draw();
+				//shapeComp->draw();
 			}
 
 			void Enemy::loadArchetype(const std::string &archetypeName)
@@ -73,7 +74,7 @@ namespace engine
 					auto xmlArchetype = doc.first_child();
 
 					std::string shapeListName = xmlArchetype.child_value("shapelist");
-					assert(shapeComp->load(shapeListName));
+					//assert(shapeComp->load(shapeListName));
 
 					_visionRadius = std::stof(xmlArchetype.child_value("vision_radius"));
 					assert(_visionRadius > 0.f);

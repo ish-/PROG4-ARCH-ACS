@@ -14,6 +14,7 @@ namespace engine
 		struct EntityContext;
 
 		class Entity
+			: public std::enable_shared_from_this<Entity>
 		{
 		public:
 			static unsigned int id;
@@ -52,11 +53,15 @@ namespace engine
 		public:
 			void updateComponents(float dt);
 			void clearComponents();
-			void addComponent(Component* component);
-			void removeComponent(Component* component);
+			//void addComponent(Component* component);
 
-			//std::vector<std::shared_ptr<Component>> components;
-			std::vector<Component*> components;
+			template <typename T, typename... Args>
+			std::shared_ptr<T> addComponent(Args&&... args);
+
+			//void removeComponent(Component* component);
+
+			std::vector<std::shared_ptr<Component>> components;
+			//std::vector<Component*> components;
 		};
 	}
 }

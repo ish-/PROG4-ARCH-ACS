@@ -8,8 +8,7 @@
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
-PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP) {
+PlayerCtrlComp::PlayerCtrlComp() {
 
 }
 
@@ -20,32 +19,33 @@ PlayerCtrlComp::~PlayerCtrlComp() {
 void PlayerCtrlComp::update(float dt)
 {
 	dt;
+	auto owner = getOwner();
 	justMoved = false;
-	auto position = owner.getPosition();
-	float rotation = owner.getRotation();
+	auto position = owner->getPosition();
+	float rotation = owner->getRotation();
 
-	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Left))
+	if (owner->_context.inputManager.isKeyJustPressed(sf::Keyboard::Left))
 	{
 		justMoved = true;
 		position.x -= engine::config::CELL_SIZE;
 		rotation = 180.f;
 	}
 
-	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Right))
+	if (owner->_context.inputManager.isKeyJustPressed(sf::Keyboard::Right))
 	{
 		justMoved = true;
 		position.x += engine::config::CELL_SIZE;
 		rotation = 0.f;
 	}
 
-	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Up))
+	if (owner->_context.inputManager.isKeyJustPressed(sf::Keyboard::Up))
 	{
 		justMoved = true;
 		position.y -= engine::config::CELL_SIZE;
 		rotation = -90.f;
 	}
 
-	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Down))
+	if (owner->_context.inputManager.isKeyJustPressed(sf::Keyboard::Down))
 	{
 		justMoved = true;
 		position.y += engine::config::CELL_SIZE;
@@ -53,7 +53,7 @@ void PlayerCtrlComp::update(float dt)
 	}
 
 	if (justMoved) {
-		owner.setPosition(position);
-		owner.setRotation(rotation);
+		owner->setPosition(position);
+		owner->setRotation(rotation);
 	}
 }

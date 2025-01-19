@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <engine/gameplay/entities/Character.hpp>
 
 class PlayerCtrlComp;
@@ -24,9 +25,9 @@ namespace engine
 					
 				virtual void draw();
 
-				PlayerCtrlComp* ctrlComp;
-				CollisionComp* collisionComp;
-				ShapeComp* shapeComp;
+				std::shared_ptr<PlayerCtrlComp> ctrlComp;
+				std::shared_ptr<CollisionComp> collisionComp;
+				std::shared_ptr<ShapeComp> shapeComp;
 			};
 		}
 	}

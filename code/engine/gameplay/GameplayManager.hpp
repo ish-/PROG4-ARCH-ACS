@@ -27,7 +27,7 @@ namespace engine
 			void draw();
 			bool stop(char* msg);
 
-			void clearMap();
+			void clearMapEntities();
 
 			void loadMap(const std::string &mapName);
 

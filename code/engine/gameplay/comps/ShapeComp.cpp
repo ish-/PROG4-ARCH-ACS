@@ -13,9 +13,8 @@
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
-ShapeComp::ShapeComp(Entity* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP) {
-
+ShapeComp::ShapeComp(const std::string& name) {
+	load(name);
 }
 
 ShapeComp::~ShapeComp() {
@@ -113,5 +112,6 @@ Shapes& ShapeComp::getShapes()
 }
 
 void ShapeComp::draw () {
-    owner._context.graphicsManager.draw(_shapes, owner.getTransform());
+	auto owner = getOwner();
+	owner->_context.graphicsManager.draw(_shapes, owner->getTransform());
 }
