@@ -1,9 +1,11 @@
 #include "Target.hpp"
 
 #include <engine/gameplay/EntityContext.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
 #include <engine/graphics/GraphicsManager.hpp>
 #include <engine/physics/PhysicsManager.hpp>
+
+#include "engine/config.hpp"
+#include "engine/LOG.hpp"
 
 namespace engine
 {
@@ -16,12 +18,13 @@ namespace engine
 			{
 				_shapeList.load("target");
 
-				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
+				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
 				dGeomSetData(_collisionGeomId, this);
 			}
 
 			Target::~Target()
 			{
+				LOG("~Target()");
 				dGeomDestroy(_collisionGeomId);
 			}
 

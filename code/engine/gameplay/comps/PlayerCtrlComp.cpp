@@ -4,9 +4,9 @@
 
 #include <engine/gameplay/EntityContext.hpp>
 #include <engine/input/InputManager.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
 
 #include "engine/LOG.hpp"
+#include "engine/config.hpp"
 
 PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP, int updateOrderP)
 	: Component(ownerP, updateOrderP) {
@@ -20,39 +20,39 @@ PlayerCtrlComp::~PlayerCtrlComp() {
 void PlayerCtrlComp::update(float dt)
 {
 	dt;
-	bool _justMoved = false;
+	justMoved = false;
 	auto position = owner.getPosition();
 	float rotation = owner.getRotation();
 
 	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Left))
 	{
-		_justMoved = true;
-		position.x -= GameplayManager::CELL_SIZE;
+		justMoved = true;
+		position.x -= engine::config::CELL_SIZE;
 		rotation = 180.f;
 	}
 
 	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Right))
 	{
-		_justMoved = true;
-		position.x += GameplayManager::CELL_SIZE;
+		justMoved = true;
+		position.x += engine::config::CELL_SIZE;
 		rotation = 0.f;
 	}
 
 	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Up))
 	{
-		_justMoved = true;
-		position.y -= GameplayManager::CELL_SIZE;
+		justMoved = true;
+		position.y -= engine::config::CELL_SIZE;
 		rotation = -90.f;
 	}
 
 	if (owner._context.inputManager.isKeyJustPressed(sf::Keyboard::Down))
 	{
-		_justMoved = true;
-		position.y += GameplayManager::CELL_SIZE;
+		justMoved = true;
+		position.y += engine::config::CELL_SIZE;
 		rotation = 90.f;
 	}
 
-	if (_justMoved)
+	if (justMoved)
 	{
 		owner.setPosition(position);
 		owner.setRotation(rotation);

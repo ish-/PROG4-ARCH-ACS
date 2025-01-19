@@ -4,7 +4,9 @@
 #include <sstream>
 #include <pugixml/pugixml.hpp>
 #include <engine/gameplay/EntityContext.hpp>
+// TODO: get rid of Gameplay
 #include <engine/gameplay/GameplayManager.hpp>
+#include "engine/config.hpp"
 #include <engine/gameplay/entities/Player.hpp>
 
 namespace engine

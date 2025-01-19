@@ -13,6 +13,7 @@
 
 #include <engine/gameplay/comps/PlayerCtrlComp.h>
 #include "engine/LOG.hpp"
+#include "engine/config.hpp"
 
 namespace engine
 {
@@ -23,54 +24,20 @@ namespace engine
 			Player::Player(EntityContext &context)
 				: Character{ context }
 			{
-				new PlayerCtrlComp(this);
-
+				ctrlComp = new PlayerCtrlComp(this);
 				_shapeList.load("player");
 
-				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
+				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
 				dGeomSetData(_collisionGeomId, this);
 			}
 
-			/*void Player::update()
-			{*/
-				/*_justMoved = false;
-				auto position = getPosition();
-				float rotation = getRotation();
+			void Player::update()
+			{
+				Super::update();
 
-				if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Left))
+				if (ctrlComp->justMoved)
 				{
-					_justMoved = true;
-					position.x -= gameplay::Manager::CELL_SIZE;
-					rotation = 180.f;
-				}
-
-				if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Right))
-				{
-					_justMoved = true;
-					position.x += gameplay::Manager::CELL_SIZE;
-					rotation = 0.f;
-				}
-
-				if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Up))
-				{
-					_justMoved = true;
-					position.y -= gameplay::Manager::CELL_SIZE;
-					rotation = -90.f;
-				}
-
-				if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Down))
-				{
-					_justMoved = true;
-					position.y += gameplay::Manager::CELL_SIZE;
-					rotation = 90.f;
-				}
-
-				if (_justMoved)
-				{
-					setPosition(position);
-					setRotation(rotation);
-
-					dGeomSetPosition(_collisionGeomId, position.x, position.y, 0);
+					dGeomSetPosition(_collisionGeomId, _position.x, _position.y, 0);
 				}
 
 				auto collisions = _context.physicsManager.getCollisionsWith(_collisionGeomId);
@@ -82,8 +49,8 @@ namespace engine
 					{
 						_context.entityListener.loadNextMap();
 					}
-				}*/
-			//}
+				}
+			}
 
 			Player::~Player()
 			{
@@ -92,7 +59,7 @@ namespace engine
 
 			bool Player::hasJustMoved() const
 			{
-				return _justMoved;
+				return ctrlComp->justMoved;
 			}
 		}
 	}

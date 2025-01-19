@@ -12,6 +12,8 @@ namespace engine
 		{
 			class Character : public Entity
 			{
+				using Super = Entity;
+
 			public:
 				Character(EntityContext &context);
 				virtual ~Character();
