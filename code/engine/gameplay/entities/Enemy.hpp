@@ -3,6 +3,8 @@
 #include <string>
 #include <engine/gameplay/entities/Character.hpp>
 
+class CollisionComp;
+
 namespace engine
 {
 	namespace gameplay

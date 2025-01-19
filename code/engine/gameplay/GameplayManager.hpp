@@ -25,6 +25,7 @@ namespace engine
 
 			bool update();
 			void draw();
+			bool stop(char* msg);
 
 			void clearMap();
 

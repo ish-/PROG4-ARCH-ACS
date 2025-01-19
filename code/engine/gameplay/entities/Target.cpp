@@ -4,6 +4,8 @@
 #include <engine/graphics/GraphicsManager.hpp>
 #include <engine/physics/PhysicsManager.hpp>
 
+#include <engine/gameplay/comps/CollisionComp.hpp>
+
 #include "engine/config.hpp"
 #include "engine/LOG.hpp"
 
@@ -18,20 +20,15 @@ namespace engine
 			{
 				_shapeList.load("target");
 
-				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-				dGeomSetData(_collisionGeomId, this);
+				collisionComp = new CollisionComp(this, engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
+
+				/*_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
+				dGeomSetData(_collisionGeomId, this);*/
 			}
 
 			Target::~Target()
 			{
 				LOG("~Target()");
-				dGeomDestroy(_collisionGeomId);
-			}
-
-			void Target::update()
-			{
-				auto &position = getPosition();
-				dGeomSetPosition(_collisionGeomId, position.x, position.y, 0);
 			}
 
 			void Target::draw()

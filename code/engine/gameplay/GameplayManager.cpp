@@ -31,19 +31,21 @@ namespace engine
 			}
 
 			_preventMapCompletion = false;
-			if (_nextMapRequested && !_nextMapName.empty())
+			if (_nextMapRequested)
 			{
+				if (_nextMapName.empty())
+					return stop("Win!");
+
 				_nextMapRequested = false;
 				loadMap(_nextMapName);
 			}
 
 			if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Escape))
-				bGameover = true;
+				return stop("Escape pressed..");
 
-			if (bGameover) {
-				clearMap();
-				return true;
-			}
+			if (bGameover)
+				return stop("Gameover!");
+		
 			return false;
 		}
 
@@ -53,6 +55,13 @@ namespace engine
 			{
 				entity->draw();
 			}
+		}
+
+		bool Manager::stop(char* msg = "Untitled stop...")
+		{
+			std::cout << msg << std::endl;
+			clearMap();
+			return true;
 		}
 
 		void Manager::clearMap() {
@@ -153,9 +162,7 @@ namespace engine
 
 		void Manager::gameOver()
 		{
-			LOG("Manager::gameOver()");
 			bGameover = true;
-			std::cout << "Game over" << std::endl;
 			/*loadMap(_currentMapName);*/
 		}
 

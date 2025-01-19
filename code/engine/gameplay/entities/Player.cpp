@@ -36,11 +36,11 @@ namespace engine
 			{
 				Super::update();
 
-				CollidedEntities entities = collisionComp->getCollidedEntities();
-				for (auto entity : entities)
+				CollidedComps comps = collisionComp->getCollidedComps();
+				for (auto comp : comps)
 				{
 					if (auto targetEntity
-							= dynamic_cast<entities::Target*>(entity))
+							= dynamic_cast<entities::Target*>(&comp->owner))
 						_context.entityListener.loadNextMap();
 				}
 			}

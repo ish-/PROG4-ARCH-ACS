@@ -17,12 +17,9 @@ namespace engine
 
 			public:
 				Player(EntityContext &context);
-
-				virtual void update();
-
 				virtual ~Player();
 
-				bool hasJustMoved() const;
+				virtual void update();
 
 				PlayerCtrlComp* ctrlComp;
 				CollisionComp* collisionComp;

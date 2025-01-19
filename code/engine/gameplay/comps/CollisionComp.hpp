@@ -7,7 +7,9 @@
 #include <set>
 #include <engine/gameplay/Entity.hpp>
 
-using CollidedEntities = std::set<Entity*>;
+class CollisionComp;
+
+using CollidedComps = std::set<CollisionComp*>;
 
 class CollisionComp : public Component
 {
@@ -19,7 +21,7 @@ public:
 	CollisionComp(const CollisionComp&) = delete;
 	CollisionComp& operator=(const CollisionComp&) = delete;
 
-	CollidedEntities getCollidedEntities();
+	CollidedComps getCollidedComps();
 	void update(float dt) override;
 
 	dGeomID _collisionGeomId;

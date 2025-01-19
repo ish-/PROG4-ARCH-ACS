@@ -21,18 +21,18 @@ CollisionComp::~CollisionComp() {
 	dGeomDestroy(_collisionGeomId);
 }
 
-std::set<Entity*> CollisionComp::getCollidedEntities()
+std::set<CollisionComp*> CollisionComp::getCollidedComps()
 {
-	
+
 	auto collisions = owner._context.physicsManager.getCollisionsWith(_collisionGeomId);
-	std::set<Entity*> entities;
+	std::set<CollisionComp*> comps;
 	for (auto& geomId : collisions)
 	{
-		Entity* entity = reinterpret_cast<Entity*>(dGeomGetData(geomId));
+		CollisionComp* entity = reinterpret_cast<CollisionComp*>(dGeomGetData(geomId));
 		if (entity)
-			entities.insert(entity);
+			comps.insert(entity);
 	}
-	return entities;
+	return comps;
 }
 
 void CollisionComp::update(float dt)
