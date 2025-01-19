@@ -12,7 +12,7 @@ Component::Component(engine::gameplay::Entity* ownerP, int updateOrderP) :
 Component::~Component()
 {
 	owner.removeComponent(this);
-	LOG("~Component()");
+	//LOG("~Component()");
 }
 
 void Component::update(float dt)

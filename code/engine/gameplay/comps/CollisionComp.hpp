@@ -15,7 +15,6 @@ class CollisionComp : public Component
 {
 public:
     CollisionComp(class engine::gameplay::Entity* ownerP, float lx, float ly, float lz, int updateOrderP = 100);
-    CollisionComp(class engine::gameplay::Entity* ownerP, int updateOrderP = 100);
 	CollisionComp() = delete;
 	virtual ~CollisionComp();
 	CollisionComp(const CollisionComp&) = delete;

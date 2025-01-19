@@ -110,6 +110,7 @@ namespace engine
 						std::string archetypeName = xmlElement.child_value("archetype");
 
 						auto entity = new entities::Enemy{ _context, archetypeName };
+						entity->setName("Enemy");
 						entity->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
 						_entities.insert(entity);
@@ -124,6 +125,7 @@ namespace engine
 						assert(column >= 0 && column < _columns);
 
 						auto player = new entities::Player{ _context };
+						player->setName("Player");
 						player->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
 						_entities.insert(player);
@@ -139,6 +141,7 @@ namespace engine
 						assert(column >= 0 && column < _columns);
 
 						auto entity = new entities::Target{ _context };
+						entity->setName("Target");
 						entity->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
 						_entities.insert(entity);

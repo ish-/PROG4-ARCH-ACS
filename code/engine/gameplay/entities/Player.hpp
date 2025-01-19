@@ -4,6 +4,7 @@
 
 class PlayerCtrlComp;
 class CollisionComp;
+class ShapeComp;
 
 namespace engine
 {
@@ -20,9 +21,12 @@ namespace engine
 				virtual ~Player();
 
 				virtual void update();
+					
+				virtual void draw();
 
 				PlayerCtrlComp* ctrlComp;
 				CollisionComp* collisionComp;
+				ShapeComp* shapeComp;
 			};
 		}
 	}

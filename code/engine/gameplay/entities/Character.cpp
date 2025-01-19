@@ -14,19 +14,16 @@ namespace engine
 			Character::Character(EntityContext &context)
 				: Entity{ context }
 			{
-				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), 0.f, 0.f, 0.f);
-				dGeomSetData(_collisionGeomId, this);
 			}
 
 			Character::~Character()
 			{
 				LOG("~Character()");
-				dGeomDestroy(_collisionGeomId);
 			}
 
 			void Character::draw()
 			{
-				_context.graphicsManager.draw(_shapeList, getTransform());
+				
 			}
 		}
 	}

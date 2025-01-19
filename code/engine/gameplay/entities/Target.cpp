@@ -5,6 +5,7 @@
 #include <engine/physics/PhysicsManager.hpp>
 
 #include <engine/gameplay/comps/CollisionComp.hpp>
+#include <engine/gameplay/comps/ShapeComp.hpp>
 
 #include "engine/config.hpp"
 #include "engine/LOG.hpp"
@@ -18,12 +19,9 @@ namespace engine
 			Target::Target(EntityContext &context)
 				: Entity{ context }
 			{
-				_shapeList.load("target");
-
 				collisionComp = new CollisionComp(this, engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-
-				/*_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
-				dGeomSetData(_collisionGeomId, this);*/
+				shapeComp = new ShapeComp(this);
+				shapeComp->load("target");
 			}
 
 			Target::~Target()
@@ -33,7 +31,7 @@ namespace engine
 
 			void Target::draw()
 			{
-				_context.graphicsManager.draw(_shapeList, getTransform());
+				shapeComp->draw();
 			}
 		}
 	}

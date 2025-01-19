@@ -8,6 +8,7 @@
 #include <engine/gameplay/GameplayManager.hpp>
 #include "engine/config.hpp"
 #include <engine/gameplay/entities/Player.hpp>
+#include <engine/gameplay/comps/ShapeComp.hpp>
 
 namespace engine
 {
@@ -18,6 +19,9 @@ namespace engine
 			Enemy::Enemy(EntityContext &context, const std::string &archetypeName)
 				: Character{ context }
 			{
+				shapeComp = new ShapeComp(this);
+				shapeComp->load("guard");
+
 				loadArchetype(archetypeName);
 			}
 
@@ -48,6 +52,11 @@ namespace engine
 						_shootDelayCounter = 0;
 					}
 				}
+			}
+
+			void Enemy::draw()
+			{
+				shapeComp->draw();
 			}
 
 			void Enemy::loadArchetype(const std::string &archetypeName)

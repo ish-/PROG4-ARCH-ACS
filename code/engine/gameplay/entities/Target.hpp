@@ -1,10 +1,10 @@
 #pragma once
 
 #include <ode/collision.h>
-#include <engine/graphics/ShapeList.hpp>
 #include <engine/gameplay/Entity.hpp>
 
 class CollisionComp;
+class ShapeComp;
 
 namespace engine
 {
@@ -23,10 +23,7 @@ namespace engine
 				virtual void draw() override;
 
 				CollisionComp* collisionComp;
-
-			private:
-				graphics::ShapeList _shapeList;
-				dGeomID _collisionGeomId;
+				ShapeComp* shapeComp;
 			};
 		}
 	}

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Shape.hpp>
+
+using Shapes = std::vector<sf::Shape*>;
 
 namespace engine
 {
@@ -8,7 +11,7 @@ namespace engine
 
 	namespace graphics
 	{
-		class ShapeList;
+		
 		class ViewProvider;
 
 		class Manager
@@ -22,7 +25,7 @@ namespace engine
 			void update();
 
 			void clear();
-			void draw(const ShapeList &shapeList, const sf::Transform &transform);
+			void draw(const Shapes& shapes, const sf::Transform& transform);
 			void display();
 
 		private:

@@ -7,20 +7,28 @@ namespace engine
 {
 	namespace gameplay
 	{
+		unsigned int Entity::id = 0;
+
 		Entity::Entity(EntityContext &context)
 			: _context{ context }
 		{
+
 		}
 
 		Entity::~Entity()
 		{
-			LOG("~Entity()");
+			LOG("~Entity()", name);
 			clearComponents();
 		}
 
 		void Entity::update()
 		{
 			updateComponents(0.0f);
+		}
+
+		void Entity::setName(std::string preferName)
+		{
+			name = preferName + "-" + std::to_string(Entity::id++);
 		}
 
 		const sf::Vector2f &Entity::getPosition() const
@@ -76,10 +84,8 @@ namespace engine
 		}
 
 		void Entity::clearComponents() {
-			for (auto component : components)
-			{
-				delete component;
-			}
+			/*for (auto component : components)
+				delete component;*/
 			components.clear();
 		}
 

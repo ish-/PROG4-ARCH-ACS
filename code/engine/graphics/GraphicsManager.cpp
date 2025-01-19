@@ -55,10 +55,10 @@ namespace engine
 			_window.setView(view);
 		}
 
-		void Manager::draw(const ShapeList &shapeList, const sf::Transform &transform)
+		void Manager::draw(const Shapes &shapes, const sf::Transform &transform)
 		{
 			sf::RenderStates renderStates{ transform };
-			for (auto shape : shapeList.getShapes())
+			for (auto shape : shapes)
 			{
 				_window.draw(*shape, renderStates);
 			}

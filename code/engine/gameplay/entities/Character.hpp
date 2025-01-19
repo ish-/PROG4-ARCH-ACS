@@ -18,6 +18,8 @@ namespace engine
 				Character(EntityContext &context);
 				virtual ~Character();
 
+				bool bIsCharacter = true;
+
 				virtual void draw() override;
 
 			protected:

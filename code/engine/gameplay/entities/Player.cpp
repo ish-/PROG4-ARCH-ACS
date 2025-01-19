@@ -13,6 +13,8 @@
 
 #include <engine/gameplay/comps/PlayerCtrlComp.h>
 #include <engine/gameplay/comps/CollisionComp.hpp>
+#include <engine/gameplay/comps/ShapeComp.hpp>
+
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
@@ -29,7 +31,8 @@ namespace engine
 				collisionComp = new CollisionComp(this,
 					engine::config::CELL_SIZE * 0.9f, engine::config::CELL_SIZE * 0.9f, 1.f);
 
-				_shapeList.load("player");
+				shapeComp = new ShapeComp(this);
+				shapeComp->load("player");
 			}
 
 			void Player::update()
@@ -39,10 +42,16 @@ namespace engine
 				CollidedComps comps = collisionComp->getCollidedComps();
 				for (auto comp : comps)
 				{
-					if (auto targetEntity
-							= dynamic_cast<entities::Target*>(&comp->owner))
+					if (auto targetEntity = dynamic_cast<entities::Target*>(&comp->owner)) {
+						LOG("Collision with Target");
 						_context.entityListener.loadNextMap();
+					}
 				}
+			}
+
+			void Player::draw()
+			{
+				shapeComp->draw();
 			}
 
 			Player::~Player()

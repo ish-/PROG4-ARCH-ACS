@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 #include <SFML/Graphics/Transform.hpp>
 
 class Component;
@@ -14,11 +15,16 @@ namespace engine
 		class Entity
 		{
 		public:
+			static unsigned int id;
+
 			Entity(EntityContext &context);
 			virtual ~Entity();
 
 			virtual void update();
 			virtual void draw() = 0;
+
+			std::string name = "_entity";
+			void setName(std::string preferName);
 
 			const sf::Vector2f &getPosition() const;
 			void setPosition(const sf::Vector2f &newPosition);

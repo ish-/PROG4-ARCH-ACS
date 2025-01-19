@@ -3,7 +3,7 @@
 #include <string>
 #include <engine/gameplay/entities/Character.hpp>
 
-class CollisionComp;
+class ShapeComp;
 
 namespace engine
 {
@@ -17,6 +17,9 @@ namespace engine
 				Enemy(EntityContext &context, const std::string &archetypeName);
 
 				virtual void update() override;
+				virtual void draw();
+
+				ShapeComp* shapeComp;
 
 			private:
 				float _visionRadius{ 0 };

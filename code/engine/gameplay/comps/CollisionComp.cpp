@@ -6,9 +6,6 @@
 #include "engine/LOG.hpp"
 #include "engine/config.hpp"
 
-CollisionComp::CollisionComp(Entity* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP) {}
-
 CollisionComp::CollisionComp(Entity* ownerP, float lx, float ly, float lz, int updateOrderP)
 	: Component(ownerP, updateOrderP) {
 
