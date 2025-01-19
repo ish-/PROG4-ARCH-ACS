@@ -1,6 +1,8 @@
 #include "Entity.hpp"
 #include "Component.hpp"
 
+#include "engine/LOG.hpp"
+
 namespace engine
 {
 	namespace gameplay
@@ -8,6 +10,12 @@ namespace engine
 		Entity::Entity(EntityContext &context)
 			: _context{ context }
 		{
+		}
+
+		Entity::~Entity()
+		{
+			LOG("~Entity()");
+			clearComponents();
 		}
 
 		void Entity::update()
@@ -63,6 +71,14 @@ namespace engine
 			{
 				component->update(dt);
 			}
+		}
+
+		void Entity::clearComponents() {
+			for (auto component : components)
+			{
+				delete component;
+			}
+			components.clear();
 		}
 
 		void Entity::addComponent(Component* component)

@@ -23,8 +23,10 @@ namespace engine
 		public:
 			Manager(graphics::Manager &graphicsManager, input::Manager &inputManager, physics::Manager &physicsManager);
 
-			void update();
+			bool update();
 			void draw();
+
+			void clearMap();
 
 			void loadMap(const std::string &mapName);
 

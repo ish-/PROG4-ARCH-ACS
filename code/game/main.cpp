@@ -2,6 +2,7 @@
 #include <cli.hpp>
 #include <platform/SetWorkingDirectory.hpp>
 #include <engine/Engine.hpp>
+#include "engine/LOG.hpp"
 
 int main(int argc, const char **argv)
 {

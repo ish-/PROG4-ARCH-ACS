@@ -11,6 +11,9 @@
 #include <engine/gameplay/entities/Target.hpp>
 #include <engine/Engine.hpp>
 
+#include <engine/gameplay/comps/PlayerCtrlComp.h>
+#include "engine/LOG.hpp"
+
 namespace engine
 {
 	namespace gameplay
@@ -20,6 +23,8 @@ namespace engine
 			Player::Player(EntityContext &context)
 				: Character{ context }
 			{
+				new PlayerCtrlComp(this);
+
 				_shapeList.load("player");
 
 				_collisionGeomId = dCreateBox(context.physicsManager.getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
@@ -79,6 +84,11 @@ namespace engine
 					}
 				}*/
 			//}
+
+			Player::~Player()
+			{
+				LOG("~Player()");
+			}
 
 			bool Player::hasJustMoved() const
 			{

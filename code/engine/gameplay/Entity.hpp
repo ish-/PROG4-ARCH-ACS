@@ -15,7 +15,7 @@ namespace engine
 		{
 		public:
 			Entity(EntityContext &context);
-			virtual ~Entity() = default;
+			virtual ~Entity();
 
 			virtual void update();
 			virtual void draw() = 0;
@@ -43,6 +43,7 @@ namespace engine
 		// Component
 		public:
 			void updateComponents(float dt);
+			void clearComponents();
 			void addComponent(Component* component);
 			void removeComponent(Component* component);
 

@@ -11,8 +11,6 @@
 #include <engine/gameplay/entities/Player.hpp>
 #include <engine/gameplay/entities/Target.hpp>
 
-#include <engine/gameplay/comps/PlayerCtrlComp.h>
-
 namespace engine
 {
 	namespace gameplay
@@ -24,7 +22,7 @@ namespace engine
 		{
 		}
 
-		void Manager::update()
+		bool Manager::update()
 		{
 			for (auto entity : _entities)
 			{
@@ -38,8 +36,14 @@ namespace engine
 				loadMap(_nextMapName);
 			}
 
-			if (bGameover)
-				loadMap(_currentMapName);
+			if (_context.inputManager.isKeyJustPressed(sf::Keyboard::Escape))
+				bGameover = true;
+
+			if (bGameover) {
+				clearMap();
+				return true;
+			}
+			return false;
 		}
 
 		void Manager::draw()
@@ -50,15 +54,19 @@ namespace engine
 			}
 		}
 
-		void Manager::loadMap(const std::string& mapName)
-		{
-			bGameover = false;
-
+		void Manager::clearMap() {
 			for (auto entity : _entities)
 			{
 				delete entity;
 			}
 			_entities.clear();
+		}
+
+		void Manager::loadMap(const std::string& mapName)
+		{
+			bGameover = false;
+
+			clearMap();
 
 			std::stringstream filename;
 			filename << "maps/" << mapName << ".xml";
@@ -104,7 +112,6 @@ namespace engine
 						assert(column >= 0 && column < _columns);
 
 						auto player = new entities::Player{ _context };
-						new PlayerCtrlComp(player, 0);
 						player->setPosition(sf::Vector2f{ (column + 0.5f) * CELL_SIZE, (row + 0.5f) * CELL_SIZE });
 
 						_entities.insert(player);

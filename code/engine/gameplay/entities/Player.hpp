@@ -14,6 +14,7 @@ namespace engine
 				Player(EntityContext &context);
 
 				//virtual void update() override;
+				virtual ~Player();
 
 				bool hasJustMoved() const;
 

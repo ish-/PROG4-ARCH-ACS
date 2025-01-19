@@ -6,13 +6,15 @@
 #include <engine/input/InputManager.hpp>
 #include <engine/gameplay/GameplayManager.hpp>
 
+#include "engine/LOG.hpp"
+
 PlayerCtrlComp::PlayerCtrlComp(Entity* ownerP, int updateOrderP)
 	: Component(ownerP, updateOrderP) {
 
 }
 
 PlayerCtrlComp::~PlayerCtrlComp() {
-
+	LOG("~PlayerCtrlComp");
 }
 
 void PlayerCtrlComp::update(float dt)

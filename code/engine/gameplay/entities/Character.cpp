@@ -3,6 +3,7 @@
 #include <engine/gameplay/EntityContext.hpp>
 #include <engine/graphics/GraphicsManager.hpp>
 #include <engine/physics/PhysicsManager.hpp>
+#include "engine/LOG.hpp"
 
 namespace engine
 {
@@ -19,6 +20,7 @@ namespace engine
 
 			Character::~Character()
 			{
+				LOG("~Character()");
 				dGeomDestroy(_collisionGeomId);
 			}
 

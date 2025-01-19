@@ -5,6 +5,7 @@
 #include <sstream>
 #include <pugixml/pugixml.hpp>
 #include <SFML/System.hpp>
+#include "engine/LOG.hpp"
 
 namespace engine
 {
@@ -54,6 +55,7 @@ namespace engine
 
 	void Engine::tearDown()
 	{
+		LOG("Engine::tearDown()");
 		_physicsManager.tearDown();
 		_graphicsManager.tearDown();
 	}
@@ -73,13 +75,16 @@ namespace engine
 
 			_physicsManager.update();
 			_graphicsManager.update();
-			_gameplayManager.update();
+			bool bExit = _gameplayManager.update();
 
 			_graphicsManager.clear();
 
 			_gameplayManager.draw();
 
 			_graphicsManager.display();
+
+			if (bExit)
+				break;
 		}
 	}
 
