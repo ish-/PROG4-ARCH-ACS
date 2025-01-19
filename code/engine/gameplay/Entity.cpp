@@ -104,6 +104,7 @@ namespace engine
 			}
 
 			// Inserts element before position of iterator
+			//components.insert(iter, std::shared_ptr<Component>(component));
 			components.insert(iter, component);
 		}
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace engine
 {
 	namespace gameplay
@@ -9,6 +11,7 @@ namespace engine
 }
 
 class Component
+	: public std::enable_shared_from_this<Component>
 {
 public:
 	Component(engine::gameplay::Entity* ownerP, int updateOrderP = 100);

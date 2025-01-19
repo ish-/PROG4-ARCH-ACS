@@ -25,6 +25,10 @@ namespace engine
 			{
 				
 			}
+			void Character::update()
+			{
+				Super::update();
+			}
 		}
 	}
 }

@@ -21,11 +21,9 @@ namespace engine
 				bool bIsCharacter = true;
 
 				virtual void draw() override;
+				virtual void update();
 
 			protected:
-				graphics::ShapeList _shapeList;
-				dGeomID _collisionGeomId;
-
 				bool _isWalking{ false };
 			};
 		}
