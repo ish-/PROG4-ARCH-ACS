@@ -3,10 +3,8 @@
 #include <cassert>
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Window/Event.hpp>
-#include <engine/input/InputManager.hpp>
 #include <engine/graphics/ShapeList.hpp>
 #include <engine/graphics/ViewProvider.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
 #include <engine/Engine.hpp>
 
 namespace engine

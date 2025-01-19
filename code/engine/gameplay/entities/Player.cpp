@@ -1,15 +1,8 @@
 #include "engine/gameplay/entities/Player.hpp"
 
-#include <ode/collision.h>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Shape.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-#include <engine/input/InputManager.hpp>
-#include <engine/physics/PhysicsManager.hpp>
 #include <engine/gameplay/EntityContext.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
+#include <engine/gameplay/EntityListener.hpp>
 #include <engine/gameplay/entities/Target.hpp>
-#include <engine/Engine.hpp>
 
 #include <engine/gameplay/comps/PlayerCtrlComp.h>
 #include <engine/gameplay/comps/CollisionComp.hpp>

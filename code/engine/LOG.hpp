@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+#define COUT_DISABLE
+
 #ifndef COUT_DISABLE
 	#define COUT_ENABLED
 	#define CRED(msg) "\033[31m" msg "\033[0m"

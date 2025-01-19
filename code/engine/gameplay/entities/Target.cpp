@@ -1,8 +1,6 @@
 #include "Target.hpp"
 
 #include <engine/gameplay/EntityContext.hpp>
-#include <engine/graphics/GraphicsManager.hpp>
-#include <engine/physics/PhysicsManager.hpp>
 
 #include <engine/gameplay/comps/CollisionComp.hpp>
 #include <engine/gameplay/comps/ShapeComp.hpp>

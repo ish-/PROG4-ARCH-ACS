@@ -3,9 +3,10 @@
 #include <iostream>
 #include <sstream>
 #include <pugixml/pugixml.hpp>
+#include <engine/config.hpp>
 #include <engine/gameplay/EntityContext.hpp>
 // TODO: get rid of Gameplay
-#include <engine/gameplay/GameplayManager.hpp>
+#include <engine/gameplay/EntityListener.hpp>
 #include "engine/config.hpp"
 #include <engine/gameplay/entities/Player.hpp>
 #include <engine/gameplay/comps/ShapeComp.hpp>
@@ -34,7 +35,7 @@ namespace engine
 					auto &myPosition = getPosition();
 
 					auto offset = myPosition - playerPosition;
-					offset /= gameplay::Manager::CELL_SIZE;
+					offset /= engine::config::CELL_SIZE;
 					float distance2 = offset.x * offset.x + offset.y * offset.y;
 					if (distance2 <= _visionRadius * _visionRadius)
 					{
